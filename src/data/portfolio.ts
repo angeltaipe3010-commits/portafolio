@@ -41,6 +41,8 @@ export const projects: Project[] = [
       "Sitio público y panel interno con Supabase, gestión de menús, pedidos y eventos.",
     tags: ["React", "TypeScript", "Supabase", "Tailwind"],
     year: "2026",
+    demo: "https://aurea-catering.vercel.app",
+    repo: "https://github.com/angeltaipe3010-commits/aurea-catering",
     accent: "from-lime-400/20 to-transparent",
   },
   {
@@ -55,8 +57,10 @@ export const projects: Project[] = [
     title: "Barber Pro",
     description:
       "CRM para barberías que centraliza la gestión de clientes, las finanzas del negocio y el inventario de productos en un solo panel.",
-    tags: ["React", "TypeScript", "Supabase", "Tailwind"],
+    tags: ["React", "TypeScript", "Supabase", "SQLite (WASM)", "Tailwind"],
     year: "2025 — 2026",
+    demo: "https://barbershop-demo-rho-three.vercel.app",
+    repo: "https://github.com/angeltaipe3010-commits/barbershop-demo",
     accent: "from-fuchsia-400/20 to-transparent",
   },
 ];
