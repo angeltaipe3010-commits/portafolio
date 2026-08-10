@@ -22,15 +22,31 @@ export const socials = [
   { label: "Email", href: `mailto:${contact.email}` },
 ];
 
+export type ProjectLink = {
+  label: string;
+  href: string;
+  /**
+   * Destino principal del proyecto. Se pinta en color de acento y alimenta la
+   * flecha de la cabecera. Los demás quedan como botones secundarios.
+   */
+  primary?: boolean;
+  /** Marca el enlace al repositorio para que lleve el icono de código. */
+  code?: boolean;
+};
+
 export type Project = {
   title: string;
   description: string;
   tags: string[];
   year: string;
-  /** URL del despliegue (Vercel). Sin esto no se muestra el botón "Ver demo". */
-  demo?: string;
-  /** URL del repositorio. Sin esto no se muestra el botón "Código". */
-  repo?: string;
+  /**
+   * Destinos del proyecto: demo pública, panel interno, repositorio… Un
+   * proyecto puede tener varios (Aurea son dos aplicaciones desplegadas
+   * por separado) o ninguno, y entonces la tarjeta no muestra pie.
+   */
+  links?: ProjectLink[];
+  /** Cómo entrar cuando algún destino pide credenciales. */
+  access?: string;
   accent?: string;
 };
 
@@ -41,8 +57,23 @@ export const projects: Project[] = [
       "Sitio público y panel interno con Supabase, gestión de menús, pedidos y eventos.",
     tags: ["React", "TypeScript", "Supabase", "Tailwind"],
     year: "2026",
-    demo: "https://aurea-catering.vercel.app",
-    repo: "https://github.com/angeltaipe3010-commits/aurea-catering",
+    links: [
+      {
+        label: "Ver sitio",
+        href: "https://aurea-catering-uopo.vercel.app/",
+        primary: true,
+      },
+      {
+        label: "Panel interno",
+        href: "https://aurea-catering.vercel.app/login",
+      },
+      {
+        label: "Código",
+        href: "https://github.com/angeltaipe3010-commits/aurea-catering",
+        code: true,
+      },
+    ],
+    access: "Panel: demo@aurea.pe / demo1234",
     accent: "from-lime-400/20 to-transparent",
   },
   {
@@ -59,8 +90,19 @@ export const projects: Project[] = [
       "CRM para barberías que centraliza la gestión de clientes, las finanzas del negocio y el inventario de productos en un solo panel.",
     tags: ["React", "TypeScript", "Supabase", "SQLite (WASM)", "Tailwind"],
     year: "2025 — 2026",
-    demo: "https://barbershop-demo-rho-three.vercel.app",
-    repo: "https://github.com/angeltaipe3010-commits/barbershop-demo",
+    links: [
+      {
+        label: "Ver demo",
+        href: "https://barbershop-demo-rho-three.vercel.app/login",
+        primary: true,
+      },
+      {
+        label: "Código",
+        href: "https://github.com/angeltaipe3010-commits/barbershop-demo",
+        code: true,
+      },
+    ],
+    access: "admin / demo1234",
     accent: "from-fuchsia-400/20 to-transparent",
   },
 ];

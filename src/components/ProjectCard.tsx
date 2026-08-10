@@ -15,6 +15,11 @@ type Props = { project: Project; className?: string };
 export default function ProjectCard({ project, className = "" }: Props) {
   const reduced = useReducedMotion();
 
+  // La flecha de la cabecera lleva al destino principal; si ninguno lo es,
+  // al primero de la lista.
+  const links = project.links ?? [];
+  const mainLink = links.find((link) => link.primary) ?? links[0];
+
   const x = useMotionValue(0);
   const y = useMotionValue(0);
   const springCfg = { stiffness: 220, damping: 22, mass: 0.4 };
@@ -34,8 +39,8 @@ export default function ProjectCard({ project, className = "" }: Props) {
     y.set(0);
   };
 
-  // La card lleva dos destinos (demo y repo), así que es un artículo con
-  // enlaces dentro y no un enlace envolvente: anidar anchors sería inválido.
+  // La card puede llevar varios destinos, así que es un artículo con enlaces
+  // dentro y no un enlace envolvente: anidar anchors sería inválido.
   return (
     <motion.article
       variants={fadeUp}
@@ -76,12 +81,12 @@ export default function ProjectCard({ project, className = "" }: Props) {
             </h3>
           </div>
 
-          {project.demo && (
+          {mainLink && (
             <motion.a
-              href={project.demo}
+              href={mainLink.href}
               target="_blank"
               rel="noreferrer"
-              aria-label={`Abrir la demo de ${project.title}`}
+              aria-label={`${mainLink.label} de ${project.title}`}
               variants={{ hover: { rotate: 12, x: 2, y: -2 } }}
               initial={{ rotate: 0, x: 0, y: 0 }}
               transition={{ duration: 0.25, ease: easeOut }}
@@ -105,36 +110,37 @@ export default function ProjectCard({ project, className = "" }: Props) {
           ))}
         </div>
 
-        {(project.demo || project.repo) && (
-          <div className="mt-6 flex flex-wrap items-center gap-2 border-t border-border pt-6">
-            {project.demo && (
-              <a
-                href={project.demo}
-                target="_blank"
-                rel="noreferrer"
-                className="group/link inline-flex items-center gap-1.5 rounded-full bg-accent px-4 py-1.5 text-xs font-medium text-bg transition-transform duration-150 ease-out hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.97]"
-              >
-                Ver demo
-                <ArrowUpRight
-                  size={14}
-                  className="transition-transform duration-200 ease-out group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5"
-                />
-              </a>
-            )}
-            {project.repo && (
-              <a
-                href={project.repo}
-                target="_blank"
-                rel="noreferrer"
-                className="group/link inline-flex items-center gap-1.5 rounded-full border border-border bg-bg/50 px-4 py-1.5 text-xs text-fg transition-colors duration-200 hover:border-fg-dim hover:bg-surface active:scale-[0.97]"
-              >
-                <Code2 size={14} />
-                Código
-                <ArrowUpRight
-                  size={14}
-                  className="text-fg-dim transition-transform duration-200 ease-out group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5"
-                />
-              </a>
+        {links.length > 0 && (
+          <div className="mt-6 border-t border-border pt-6">
+            <div className="flex flex-wrap items-center gap-2">
+              {links.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className={
+                    link === mainLink
+                      ? "group/link inline-flex items-center gap-1.5 rounded-full bg-accent px-4 py-1.5 text-xs font-medium text-bg transition-transform duration-150 ease-out hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.97]"
+                      : "group/link inline-flex items-center gap-1.5 rounded-full border border-border bg-bg/50 px-4 py-1.5 text-xs text-fg transition-colors duration-200 hover:border-fg-dim hover:bg-surface active:scale-[0.97]"
+                  }
+                >
+                  {link.code && <Code2 size={14} />}
+                  {link.label}
+                  <ArrowUpRight
+                    size={14}
+                    className={`transition-transform duration-200 ease-out group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5 ${
+                      link === mainLink ? "" : "text-fg-dim"
+                    }`}
+                  />
+                </a>
+              ))}
+            </div>
+
+            {project.access && (
+              <p className="mt-3 font-mono text-[11px] text-fg-dim">
+                {project.access}
+              </p>
             )}
           </div>
         )}
