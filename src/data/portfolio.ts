@@ -126,7 +126,7 @@ export const projects: Project[] = [
     accent: "from-cyan-400/20 to-transparent",
   },
   {
-    title: "Barber Pro",
+    title: "Demo Barbershop — CRM",
     description:
       "CRM para barberías que centraliza la gestión de clientes, las finanzas del negocio y el inventario de productos en un solo panel.",
     tags: ["React", "TypeScript", "Supabase", "SQLite (WASM)", "Tailwind"],
@@ -143,7 +143,7 @@ export const projects: Project[] = [
         code: true,
       },
     ],
-    access: "admin / demo1234",
+    access: "Botones de acceso por rol · admin / demo1234",
     accent: "from-fuchsia-400/20 to-transparent",
   },
 ];
@@ -210,7 +210,7 @@ export const experience: ExperienceItem[] = [
   },
   {
     role: "Desarrollador Full-Stack",
-    company: "Barber Pro · CRM",
+    company: "Demo Barbershop · CRM",
     period: "2025 — 2026",
     description:
       "CRM para barberías con gestión de clientes, control de finanzas e inventario de productos en un panel unificado.",
