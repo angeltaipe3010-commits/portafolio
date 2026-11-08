@@ -52,6 +52,47 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    title: "Ferretería El Progreso — Panel de control",
+    description:
+      "Dashboard para el dueño de una ferretería: punto de venta con cálculo de vuelto, inventario con alertas de stock, cuadre de caja, clientes con deudas y reporte del día en PDF. Incluye una escena 3D animada del patio de carga.",
+    tags: ["React", "TypeScript", "Tailwind", "Three.js", "Framer Motion"],
+    year: "2026",
+    links: [
+      {
+        label: "Ver demo",
+        href: "https://ferreteria-el-progreso.vercel.app/",
+        primary: true,
+      },
+      {
+        label: "Código",
+        href: "https://github.com/angeltaipe3010-commits/ferreteria-el-progreso",
+        code: true,
+      },
+    ],
+    access: "Botón «Entrar como demo» · demo@elprogreso.pe / demo1234",
+    accent: "from-indigo-400/20 to-transparent",
+  },
+  {
+    title: "Clínica Nácar — Landing page",
+    description:
+      "Web de una sola página para una clínica estética: recorrido 3D ligado al scroll, efecto de vidrio líquido y un armador de citas que prepara el mensaje de WhatsApp.",
+    tags: ["Three.js", "JavaScript", "CSS", "Lenis", "esbuild"],
+    year: "2026",
+    links: [
+      {
+        label: "Ver sitio",
+        href: "https://clinica-nacar-eta.vercel.app/",
+        primary: true,
+      },
+      {
+        label: "Código",
+        href: "https://github.com/angeltaipe3010-commits/Clinica-Nacar",
+        code: true,
+      },
+    ],
+    accent: "from-rose-300/20 to-transparent",
+  },
+  {
     title: "Aurea — Sistema de Catering",
     description:
       "Sitio público y panel interno con Supabase, gestión de menús, pedidos y eventos.",
@@ -123,6 +164,8 @@ export const skillGroups: SkillGroup[] = [
       "Vite",
       "Tailwind CSS",
       "React Router v7",
+      "Framer Motion",
+      "Three.js",
     ],
   },
   {
@@ -185,6 +228,20 @@ export const experience: ExperienceItem[] = [
     period: "2026 — Actualidad",
     description:
       "Sistema de gestión para una bodega local: inventario, movimientos de productos y seguimiento de ventas.",
+  },
+  {
+    role: "Desarrollador Frontend",
+    company: "Clínica Nácar · Landing page",
+    period: "2026",
+    description:
+      "Landing de una sola página con escena 3D procedural ligada al scroll y un armador de citas por WhatsApp, compilada en un solo archivo.",
+  },
+  {
+    role: "Desarrollador Frontend",
+    company: "Ferretería El Progreso · Panel de control",
+    period: "2026",
+    description:
+      "Dashboard con punto de venta, inventario, caja y clientes; reporte en PDF, búsqueda rápida y escena 3D animada. Probado con 66 casos automáticos.",
   },
 ];
 
